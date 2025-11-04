@@ -44,10 +44,13 @@ int main(void)
 {
     setlocale(LC_ALL, "");
 
-    // Ввод данных по условию задачи
-    double start = 2.0;
-    double end = 4.0;
-    double step = 0.2;
+    // Ввод данных с клавиатуры
+    printf("Введите начало интервала: ");
+    double start = defValid();
+    printf("Введите конец интервала: ");
+    double end = defValid();
+    printf("Введите шаг: ");
+    double step = defValid();
 
     printf("Задача: y = 3x - 4*ln(x) - 5\n");
     printf("Интервал: [%.1lf; %.1lf], шаг: %.1lf\n", start, end, step);
