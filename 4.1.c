@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
+#include <stdbool.h>
 
 /**
 * @brief Считывает значение, введённое с клавиатуры, с проверкой ввода
@@ -10,10 +11,10 @@
 int getValid();
 
 /**
-* @brief Проверяет что переменная не меньше единицы
-* @param input - значение проверяемой переменной
-*/
-void checkValueForN(const int input);
+ * @brief Считывает положительное целое число (>=1) и возвращает его как size_t
+ * @return Корректный размер массива (>= 1)
+ */
+ size_t positiveInput(void);
 
 /**
 * @brief Проверяет, лежит ли число в указанном диапазоне
@@ -125,8 +126,7 @@ int main(void)
     system("chcp 1251");
 
     printf("Введите размер массива: ");
-    size_t size = (size_t)getValid();
-    checkValueForN(size);
+    size_t size = positiveInput();
 
     int* A = calloc(size, sizeof(int));
     check_pointer(A);
@@ -277,13 +277,15 @@ void defPrintArr(const int* arr, const size_t size)
     }
 }
 
-void checkValueForN(const int input)
+size_t positiveInput(void)
 {
+    int input = getValid();
     if (input < 1)
     {
         fprintf(stderr, "Error: Размер массива должен быть не меньше 1\n");
         exit(1);
     }
+    return (size_t)input;
 }
 
 int defForTask1(const int* arr, const size_t size)
@@ -293,7 +295,7 @@ int defForTask1(const int* arr, const size_t size)
     int summ = 0;
     for (size_t i = 0; i < size; i++)
     {
-        if ((arr[i] < 0) && (arr[i] % 10 == 0))
+        if ((arr[i] < 0) && (abs(arr[i]) % 10 == 0))
         {
             summ += arr[i];
         }
@@ -317,17 +319,17 @@ void defForTask3(const int* arr, const size_t size, const int target)
 {
     check_pointer(arr);
 
-    int found = 0;
+    bool found = false;
     printf("\nПары соседних элементов с произведением %d:\n", target);
 
     for (size_t i = 0; i < size - 1; i++)
     {
-        long long product = (long long)arr[i] * arr[i + 1];
+        int product = arr[i] * arr[i + 1];
         if (product == target)
         {
-            printf("Элементы A[%zu] = %d и A[%zu] = %d (произведение = %lld)\n",
+            printf("Элементы A[%zu] = %d и A[%zu] = %d (произведение = %d)\n",
                 i, arr[i], i + 1, arr[i + 1], product);
-            found = 1;
+            found = true;
         }
     }
 
