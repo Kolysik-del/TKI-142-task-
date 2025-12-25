@@ -14,7 +14,7 @@ double davka(const double weight, const double square, const double g);
 int main(void)
 {
     system("chcp 1251");
-    double weight, square;
+    double weight = 0, square = 0;
     const double g = 9.8;
     printf("Введите значение массы тела (кг): ");
     scanf_s("%lf", &weight);
