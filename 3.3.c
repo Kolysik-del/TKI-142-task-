@@ -92,7 +92,7 @@ void checkStep(const double step) {
 }
 void checkPositive(const double value)
 {
-    if (value < 0)
+    if (value < -DBL_EPSILON)
     {
         fprintf(stderr, "Ошибка ввода. Значение должно быть положительным.");
         exit(1);
