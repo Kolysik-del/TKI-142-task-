@@ -12,7 +12,7 @@
  * @param x3 координата x точки C
  * @param y3 координата y точки C
  */
-double collinear(double x1, double y1, double x2, double y2, double x3, double y3);
+double collinear(const double x1, const double y1, const double x2, const double y2, const double x3, const double y3);
 /**
  * @brief вычисляет угол B в треугольнике
  * @param x1 координата x точки A
@@ -22,7 +22,7 @@ double collinear(double x1, double y1, double x2, double y2, double x3, double y
  * @param x3 координата x точки C
  * @param y3 координата y точки C
  */
-double angleValue(double x1, double y1, double x2, double y2, double x3, double y3);
+double angleValue(const double x1, const double y1, const double x2, const double y2, const double x3, const double y3);
 /**
  * @brief считывает значение,
  * введенное с клавиатуры с проверкой ввода
@@ -57,18 +57,18 @@ int main(void)
     {
         printf("Точки не лежат на одной прямой.\n");
         double angle_B = angleValue(x1, y1, x2, y2, x3, y3);
-        if (angle_B >= 0)
+        if (angle_B != -1.0)
         {
             printf("Угол B в треугольнике: %.2f градусов\n", angle_B);
         }
     }
     return 0;
 }
-double collinear(double x1, double y1, double x2, double y2, double x3, double y3)
+double collinear(const double x1, const double y1, const double x2, const double y2, const double x3, const double y3)
 {
     return (x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1);
 }
-double angleValue(double x1, double y1, double x2, double y2, double x3, double y3)
+double angleValue(const double x1, const double y1, const double x2, const double y2, const double x3, const double y3)
 {
     double ba_x = x1 - x2;
     double ba_y = y1 - y2;
